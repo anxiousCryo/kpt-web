@@ -214,6 +214,16 @@
 </div>
 
 <script>
+function toggleAddress() {
+    let orderType = document.getElementById("order-type").value;
+    let addressField = document.getElementById("address-field");
+    
+    if (orderType === "D") {
+        addressField.style.display = "block";
+    } else {
+        addressField.style.display = "none";
+    }
+}
     function proceedToCheckout() {
         document.getElementById("checkout").style.display = "block";
     }
