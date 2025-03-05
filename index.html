@@ -1,0 +1,212 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KapeTeaRia</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            margin: 0;
+            padding: 0;
+            background-color: #EDE8D0; 
+            color: #d9b99b; 
+        }
+        header {
+            background-color: #EDE8D0; 
+            color: #4E3629; 
+            text-align: center;
+            padding: 20px;
+            font-size: 28px;
+        }
+        header img {
+            max-width: 150px;
+            display: block;
+            margin: auto;
+        }
+        nav {
+            text-align: center;
+            padding: 10px;
+            background: #EDE8D0; /* Nav background color */
+        }
+        nav a {
+            color: #4E3629; /* Changed to dark brown */
+            text-decoration: none;
+            margin: 10px;
+            font-size: 18px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .menu-section {
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #4E3629; /* Dark brown for section headers */
+            border-bottom: 2px solid #4E3629; /* Border color to match font */
+            padding-bottom: 5px;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+        .item span {
+            color: black; /* Set item names to black */
+        }
+        .item input {
+            width: 50px;
+            text-align: center;
+        }
+        .order-btn {
+            background: #4E3629; /* Dark brown color for buttons */
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .order-btn:hover {
+            background: #3b2d22; /* Darker brown on hover */
+        }
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #4E3629; /* Dark brown color for total */
+        }
+        #checkout {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+<style type="text/css" id="operaUserStyle"></style></head>
+<body>
+
+<header>
+    <img src="logo.jpg.png" alt="KapeTeaRia Logo">
+    <div><b>KAPETEARIA</b></div>
+</header>
+
+<nav>
+    <a href="#milktea">Milk Tea</a>
+    <a href="#coffee">Coffee</a>
+    <a href="#fruittea">Fruit Tea</a>
+    <a href="#snacks">Snacks</a>
+    <a href="#special-flavors">Special Flavors</a>
+    <a href="#addons">Add-Ons</a>
+</nav>
+
+<div class="container">
+    <div id="milktea" class="menu-section">
+        <h2>Milk Tea</h2>
+        <div class="item"><span>Wintermelon - ₱39</span> <input type="number" min="0" value="0" data-price="39"></div>
+        <div class="item"><span>Okinawa - ₱39</span> <input type="number" min="0" value="0" data-price="39"></div>
+        <div class="item"><span>Taro - ₱39</span> <input type="number" min="0" value="0" data-price="39"></div>
+        <div class="item"><span>Dark Choco - ₱39</span> <input type="number" min="0" value="0" data-price="39"></div>
+        <div class="item"><span>Chocolate - ₱39</span> <input type="number" min="0" value="0" data-price="39"></div>
+        <div class="item"><span>Java Chips - ₱39</span> <input type="number" min="0" value="0" data-price="39"></div>
+        <div class="item"><span>Cookies and Cream - ₱39</span> <input type="number" min="0" value="0" data-price="39"></div>
+    </div>
+
+    <div id="coffee" class="menu-section">
+        <h2>Coffee</h2>
+        <div class="item"><span>Cold Brew - ₱39</span> <input type="number" min="0" value="0" data-price="70"></div>
+        <div class="item"><span>Coffee Mocha - ₱39</span> <input type="number" min="0" value="0" data-price="95"></div>
+        <div class="item"><span>Caramel Macchiato - ₱39</span> <input type="number" min="0" value="0" data-price="100"></div>
+    </div>
+
+    <div id="fruittea" class="menu-section">
+        <h2>Fruit Tea</h2>
+        <div class="item"><span>Mango - ₱39</span> <input type="number" min="0" value="0" data-price="85"></div>
+        <div class="item"><span>Strawberry - ₱39</span> <input type="number" min="0" value="0" data-price="90"></div>
+        <div class="item"><span>Passion Fruit - ₱39</span> <input type="number" min="0" value="0" data-price="95"></div>
+    </div>
+
+    <div id="snacks" class="menu-section">
+        <h2>Snacks</h2>
+        <div class="item"><span>Fries - ₱20</span> <input type="number" min="0" value="0" data-price="50"></div>
+        <div class="item"><span>Hash Brown - ₱20</span> <input type="number" min="0" value="0" data-price="90"></div>
+        <div class="item"><span>Cheese Stick - ₱20</span> <input type="number" min="0" value="0" data-price="100"></div>
+    </div>
+
+    <div id="special-flavors" class="menu-section">
+        <h2>Special Flavors</h2>
+        <div class="item"><span>Ultimate Dark Choco - ₱49</span> <input type="number" min="0" value="0" data-price="110"></div>
+        <div class="item"><span>Baby Meijie - ₱49</span> <input type="number" min="0" value="0" data-price="120"></div>
+    </div>
+
+    <div id="addons" class="menu-section">
+        <h2>Add-Ons</h2>
+        <div class="item"><span>Extra Pearls - ₱10</span> <input type="number" min="0" value="0" data-price="15"></div>
+        <div class="item"><span>Cream Puff - ₱10</span> <input type="number" min="0" value="0" data-price="10"></div>
+        <div class="item"><span>Cream Cheese - ₱20</span> <input type="number" min="0" value="0" data-price="20"></div>
+    </div>
+
+    <div class="total">Total: ₱<span id="total-price">0</span></div>
+    <button class="order-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+
+    <div id="checkout">
+        <h2>Checkout</h2>
+        <label>Name: <input type="text" id="name"></label><br><br>
+        <label>
+            Order Type:
+            <select id="order-type" onchange="toggleAddress()">
+                <option value="P">Pick-Up</option>
+                <option value="D">Delivery</option>
+            </select>
+        </label><br><br>
+        <label id="address-field" style="display: none;">
+            Address: <input type="text" id="address">
+        </label><br><br>
+        <button class="order-btn" onclick="placeOrder()">Place Order</button>
+    </div>
+</div>
+
+<script>
+    function updateTotal() {
+        let total = 0;
+        document.querySelectorAll("input[type='number']").forEach(input => {
+            let quantity = parseInt(input.value);
+            let price = parseInt(input.getAttribute("data-price"));
+            total += quantity * price;
+        });
+        document.getElementById("total-price").innerText = total;
+    }
+
+    document.querySelectorAll("input[type='number']").forEach(input => {
+        input.addEventListener("input", updateTotal);
+    });
+
+    function proceedToCheckout() {
+        if (parseInt(document.getElementById("total-price").innerText) === 0) {
+            alert("Please select at least one item before proceeding.");
+            return;
+        }
+        document.getElementById("checkout").style.display = "block";
+    }
+
+    function toggleAddress() {
+        let orderType = document.getElementById("order-type").value;
+        document.getElementById("address-field").style.display = orderType === "D" ? "block" : "none";
+    }
+
+    function placeOrder() {
+        let name = document.getElementById("name").value;
+        if (!name) return alert("Please enter your name.");
+        let orderType = document.getElementById("order-type").value;
+        let address = orderType === "D" ? document.getElementById("address").value : "N/A";
+
+        alert(`Thank you, ${name}! Your order for ${orderType === "D" ? "delivery to " + address : "pick-up"} has been placed.`);
+    }
+</script>
+
+
+
+</body></html>
