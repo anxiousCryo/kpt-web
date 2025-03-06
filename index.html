@@ -85,6 +85,7 @@
             display: none;
             margin-top: 20px;
         }
+    
     </style>
 </head>
 <body>
@@ -208,18 +209,24 @@
 <select id="paymentMethod" onchange="togglePaymentFields()">
     <option value="">Select Payment Method</option>
     <option value="gcash">GCash</option>
-    <option value="bank">Bank Transfer</option>
+    <option value="bank">Maya</option>
     <option value="cash">Cash</option>
 </select>
 
 <div id="gcashField" style="display: none; margin-top: 10px;">
-    <label for="gcashNumber">GCash Number:</label>
-    <input type="number" id="gcashNumber" placeholder="Enter GCash Number">
+    <h3>GCash Details</h3>
+    <p><strong>Name:</strong> Mark Benson Ang</p>
+    <p><strong>GCash Number:</strong> 09954491797</p>
+ <a href="#"><img src="gcash.png" alt="G-Cash QR Code" width="200"></a>
+<br>
 </div>
 
-<div id="bankField" style="display: none; margin-top: 10px;">
-    <label for="bankDetails">Bank Name & Account Number:</label>
-    <input type="text" id="bankDetails" placeholder="Enter Bank Details">
+<div id="mayaField" style="display: none; margin-top: 10px;">
+    <h3>Maya Details</h3>
+    <p><strongName:</strong> Mark Benson Ang</p>
+    <p><strong>Maya Number:</strong> 09954491797</p>
+<a href="#"><img src="gcash.png" alt="Maya QR Code" width="200"></a>
+<br>
 </div>
         </label><br><br>
         <label id="address-field" style="display: none;">
@@ -267,11 +274,13 @@ function proceedToCheckout() {
     document.getElementById("checkout").style.display = "block";
     updateTotal(); // Ensure the latest total is shown
 }
+
  function togglePaymentFields() {
         let paymentMethod = document.getElementById("paymentMethod").value;
         document.getElementById("gcashField").style.display = (paymentMethod === "gcash") ? "block" : "none";
-        document.getElementById("bankField").style.display = (paymentMethod === "bank") ? "block" : "none";
+        document.getElementById("mayaField").style.display = (paymentMethod === "maya") ? "block" : "none";
     }
+   
 function placeOrder() {
     let name = document.getElementById("name").value;
     let orderType = document.getElementById("order-type").value;
