@@ -169,29 +169,29 @@
 
     <div id="snacks" class="menu-section">
         <h2>Snacks</h2>
-        <div class="item"><span>Fries - ₱20</span> <input type="number" min="0" value="0" data-price="50"></div>
-        <div class="item"><span>Hash Brown - ₱20</span> <input type="number" min="0" value="0" data-price="90"></div>
-        <div class="item"><span>Cheese Stick - ₱20</span> <input type="number" min="0" value="0" data-price="100"></div>
-<div class="item"><span>Pastil Regular - ₱25</span> <input type="number" min="0" value="0" data-price="100"></div>
-<div class="item"><span>Pastil Spicy - ₱28</span> <input type="number" min="0" value="0" data-price="100"></div>
+        <div class="item"><span>Fries - ₱20</span> <input type="number" min="0" value="0" data-price="20"></div>
+        <div class="item"><span>Hash Brown - ₱20</span> <input type="number" min="0" value="0" data-price="20"></div>
+        <div class="item"><span>Cheese Stick - ₱20</span> <input type="number" min="0" value="0" data-price="20"></div>
+<div class="item"><span>Pastil Regular - ₱25</span> <input type="number" min="0" value="0" data-price="25"></div>
+<div class="item"><span>Pastil Spicy - ₱28</span> <input type="number" min="0" value="0" data-price="28"></div>
 
 
     </div>
 
     <div id="special-flavors" class="menu-section">
         <h2>Special Flavors</h2>
-        <div class="item"><span>Ultimate Dark Choco - ₱49</span> <input type="number" min="0" value="0" data-price="110"></div>
-        <div class="item"><span>Baby Meijie - ₱49</span> <input type="number" min="0" value="0" data-price="120"></div>
+        <div class="item"><span>Ultimate Dark Choco - ₱49</span> <input type="number" min="0" value="0" data-price="49"></div>
+        <div class="item"><span>Baby Meijie - ₱49</span> <input type="number" min="0" value="0" data-price="49"></div>
     </div>
 
     <div id="addons" class="menu-section">
         <h2>Add-Ons</h2>
-        <div class="item"><span>Pearl - ₱10</span> <input type="number" min="0" value="0" data-price="15"></div>
+        <div class="item"><span>Pearl - ₱10</span> <input type="number" min="0" value="0" data-price="10"></div>
         <div class="item"><span>Cream Puff - ₱10</span> <input type="number" min="0" value="0" data-price="10"></div>
-        <div class="item"><span>Cream Cheese - ₱10</span> <input type="number" min="0" value="0" data-price="20"></div>
-<div class="item"><span>Nata - ₱10</span> <input type="number" min="0" value="0" data-price="20"></div>
-<div class="item"><span>Egg Pudding - ₱10</span> <input type="number" min="0" value="0" data-price="20"></div>
-<div class="item"><span>Crushed Oreos - ₱10</span> <input type="number" min="0" value="0" data-price="20"></div>
+        <div class="item"><span>Cream Cheese - ₱10</span> <input type="number" min="0" value="0" data-price="10"></div>
+<div class="item"><span>Nata - ₱10</span> <input type="number" min="0" value="0" data-price="10"></div>
+<div class="item"><span>Egg Pudding - ₱10</span> <input type="number" min="0" value="0" data-price="10"></div>
+<div class="item"><span>Crushed Oreos - ₱10</span> <input type="number" min="0" value="0" data-price="10"></div>
     </div>
     <div class="total">Total: ₱<span id="total-price">0</span></div>
     <button class="order-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
@@ -205,12 +205,19 @@
                 <option value="P">Pick-Up</option>
                 <option value="D">Delivery</option>
             </select>
+<label for="payment-method">Payment Method:</label>
+<select id="payment-method">
+    <option value="Cash">Cash</option>
+    <option value="GCash">GCash</option>
+    <option value="Bank Transfer">Bank Transfer</option>
+</select>   
         </label><br><br>
         <label id="address-field" style="display: none;">
             Address: <input type="text" id="address">
         </label><br><br>
         <button class="order-btn" onclick="placeOrder()">Place Order</button>
-    </div>
+ </div>
+
 </div>
 
 <script>
@@ -224,15 +231,48 @@ function toggleAddress() {
         addressField.style.display = "none";
     }
 }
-    function proceedToCheckout() {
-        document.getElementById("checkout").style.display = "block";
-    }
+
+function updateTotal() {
+    let total = 0;
+
+    document.querySelectorAll(".item input").forEach(input => {
+        let quantity = parseInt(input.value) || 0;  
+        let price = parseFloat(input.getAttribute("data-price"));  
+
+        if (!isNaN(price) && quantity > 0) {
+            total += quantity * price;
+        }
+    });
+
+    document.getElementById("total-price").innerText = total.toFixed(2);
+}
+
+
+// Attach event listeners to all input fields
+document.querySelectorAll(".item input").forEach(input => {
+    input.addEventListener("input", updateTotal);
+});
+
+function proceedToCheckout() {
+    document.getElementById("checkout").style.display = "block";
+    updateTotal(); // Ensure the latest total is shown
+}
 
 function placeOrder() {
     let name = document.getElementById("name").value;
-    if (!name) return alert("Please enter your name.");
     let orderType = document.getElementById("order-type").value;
+    let paymentMethod = document.getElementById("payment-method").value;
     let address = orderType === "D" ? document.getElementById("address").value : "N/A";
+
+    if (!name) {
+        alert("Please enter your name.");
+        return;
+    }
+
+    if (orderType === "D" && !address) {
+        alert("Please enter your address for delivery.");
+        return;
+    }
 
     let orders = [];
     document.querySelectorAll(".item input").forEach(input => {
@@ -248,7 +288,8 @@ function placeOrder() {
         return;
     }
 
-    let orderDetails = `Name: ${name}\nOrder Type: ${orderType === "D" ? "Delivery" : "Pick-up"}\nAddress: ${address}\n\nOrder:\n- ${orders.join("\n- ")}\nTotal: ₱${document.getElementById("total-price").innerText}`;
+    let totalPrice = document.getElementById("total-price").innerText;
+    let orderDetails = `Name: ${name}\nOrder Type: ${orderType === "D" ? "Delivery" : "Pick-up"}\nAddress: ${address}\nPayment Method: ${paymentMethod}\n\nOrder:\n- ${orders.join("\n- ")}\nTotal: ₱${totalPrice}`;
 
     let emailRecipient = "kapetearia.bb@gmail.com";
     let emailSubject = "New Order from " + name;
@@ -256,7 +297,7 @@ function placeOrder() {
 
     window.location.href = mailtoLink;
 }
-
 </script>
+
 
 </body></html>
